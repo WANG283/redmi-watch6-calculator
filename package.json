@@ -1,0 +1,13 @@
+{
+  "name": "redmi-watch6-calculator",
+  "version": "1.0.0",
+  "description": "为 Redmi Watch 6 打造的腕上计算器 Vela 快应用：432×514 方屏大按钮布局，支持四则运算、括号与退格，纯离线、无权限申请。",
+  "scripts": {
+    "build": "aiot build",
+    "release": "aiot release",
+    "watch": "aiot watch"
+  },
+  "devDependencies": {
+    "@aiot-toolkit/aiot": "^2.0.0"
+  }
+}
