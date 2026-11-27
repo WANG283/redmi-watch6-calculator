@@ -1,0 +1,31 @@
+<template>
+  <div class="page">
+    <text class="display">{{ expr || '0' }}</text>
+    <text class="result">{{ result }}</text>
+    <div class="row" for="row in keys">
+      <text class="key" for="k in row" onclick="tap(k)">{{ k }}</text>
+    </div>
+  </div>
+</template>
+<style>
+  .page { flex-direction: column; width: 432px; height: 514px; background-color: #000; padding: 24px; }
+  .display { color: #fff; font-size: 48px; text-align: right; }
+  .result { color: #8a8a8a; font-size: 32px; text-align: right; margin-bottom: 16px; }
+  .row { flex-direction: row; justify-content: space-between; margin-bottom: 12px; }
+  .key { width: 88px; height: 72px; border-radius: 36px; background-color: #1c1c1e; color: #fff; font-size: 34px; text-align: center; }
+</style>
+<script>
+export default {
+  private: {
+    expr: "", result: "",
+    keys: [["C","(",")","/"],["7","8","9","*"],["4","5","6","-"],["1","2","3","+"],["0",".","⌫","="]]
+  },
+  tap(k) {
+    if (k === "C") { this.expr = ""; this.result = "" }
+    else if (k === "⌫") { this.expr = this.expr.slice(0, -1) }
+    else if (k === "=") {
+      try { this.result = "= " + Function("return (" + this.expr + ")")() } catch (e) { this.result = "格式错误" }
+    } else { this.expr += k }
+  }
+}
+</script>
